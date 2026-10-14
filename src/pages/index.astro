@@ -13,10 +13,10 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'n
   <section class="hero" aria-label="Introduction">
     <div class="wrap">
       <div class="hero-text">
-        <h1>Baoyi<br />Ouyang</h1>
+        <h1 aria-label="Baoyi Ouyang"><span class="line"><span>Baoyi</span></span><span class="line"><span>Ouyang</span></span></h1>
         <p class="lede">{site.intro}</p>
         <ul class="cities" aria-label="Places I've lived and learned">
-          {site.cities.map((c) => <li>{c}</li>)}
+          {site.cities.map((c, i) => <li style={`--i:${i}`}>{c}</li>)}
         </ul>
       </div>
       <figure class="hero-photo"><img src={site.heroImage} alt={site.heroAlt} fetchpriority="high" /></figure>
@@ -25,25 +25,25 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'n
 
   <div class="wrap">
     <section class="section" id="work" aria-labelledby="work-h">
-      <div class="section-head"><h2 id="work-h">Selected work</h2></div>
+      <div class="section-head" data-reveal><h2 id="work-h">Portfolio</h2></div>
       <div class="work-grid">
         <ProjectCard project={first} feature />
-        {rest.map((p) => <ProjectCard project={p} />)}
+        {rest.map((p, i) => <ProjectCard project={p} index={i} />)}
       </div>
     </section>
 
     <section class="section" id="about" aria-labelledby="about-h">
-      <div class="section-head"><h2 id="about-h">About</h2></div>
+      <div class="section-head" data-reveal><h2 id="about-h">About</h2></div>
       <div class="about-grid">
-        <figure><img src={site.aboutImage} alt={site.aboutAlt} loading="lazy" /></figure>
+        <figure data-reveal><img src={site.aboutImage} alt={site.aboutAlt} loading="lazy" /></figure>
         <div class="about-text">
-          {site.about.map((p) => <p>{p}</p>)}
+          {site.about.map((p, i) => <p data-reveal style={`--i:${i + 1}`}>{p}</p>)}
           <ul class="record">
-            {site.experience.map((e) => (
-              <li><span>{e.role}</span><span class="org">{e.org}</span><span class="years">{e.years}</span></li>
+            {site.experience.map((e, i) => (
+              <li data-reveal style={`--i:${i}`}><span>{e.role}</span><span class="org">{e.org}</span><span class="years">{e.years}</span></li>
             ))}
           </ul>
-          <div class="actions">
+          <div class="actions" data-reveal>
             <a class="btn solid" href={`mailto:${site.email}`}>Email me</a>
             {site.resume && <a class="btn" href={site.resume}>Download résumé</a>}
             {site.linkedin && <a class="btn" href={site.linkedin}>LinkedIn</a>}
@@ -53,20 +53,20 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'n
     </section>
 
     <section class="section" aria-labelledby="skills-h">
-      <div class="section-head"><h2 id="skills-h">What I do</h2></div>
+      <div class="section-head" data-reveal><h2 id="skills-h">What I do</h2></div>
       <div class="skills">
-        {site.skills.map((s) => <div><h3>{s.name}</h3><p>{s.text}</p></div>)}
+        {site.skills.map((s, i) => <div data-reveal style={`--i:${i % 3}`}><h3>{s.name}</h3><p>{s.text}</p></div>)}
       </div>
-      <ul class="tools" aria-label="Tools">{site.tools.map((t) => <li>{t}</li>)}</ul>
+      <ul class="tools" aria-label="Tools" data-reveal>{site.tools.map((t) => <li>{t}</li>)}</ul>
     </section>
 
     <section class="section" aria-labelledby="writing-h">
-      <div class="section-head"><h2 id="writing-h">Writing</h2><a href="/writing">All reflections</a></div>
+      <div class="section-head" data-reveal><h2 id="writing-h">Learning Reflections</h2><a href="/writing">All reflections</a></div>
       <ul class="writing-list">
-        {reflections.slice(0, 3).map((r) => (
-          <li><a href={`/writing/${r.id}`}>
-            <div class="thumb"><img src={r.data.cover} alt="" loading="lazy" /></div>
-            <div><p class="meta">{r.data.course} · {fmt(r.data.date)}</p><h3>{r.data.title}</h3><p>{r.data.summary}</p></div>
+        {reflections.slice(0, 3).map((r, i) => (
+          <li data-reveal style={`--i:${i}`}><a href={`/writing/${r.id}`}>
+            <div class="thumb" style={`view-transition-name: thumb-${r.id}`}><img src={r.data.cover} alt="" loading="lazy" /></div>
+            <div><p class="meta">{r.data.course} · {fmt(r.data.date)}</p><h3><span class="u">{r.data.title}</span></h3><p>{r.data.summary}</p></div>
           </a></li>
         ))}
       </ul>

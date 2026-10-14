@@ -11,15 +11,16 @@ const d = project.data;
 const { Content } = await render(project);
 ---
 <Base title={d.title} description={d.summary} image={d.cover} current="work">
+  <div class="progress" aria-hidden="true"></div>
   <article>
     <div class="wrap">
       <header class="page-head">
-        <p class="ctx">{d.category} · {d.context}</p>
-        <h1>{d.title}</h1>
-        <p class="summary">{d.summary}</p>
-        {d.highlights && <ul class="highlights">{d.highlights.map((h) => <li>{h}</li>)}</ul>}
+        <p class="ctx" data-reveal>{d.category} · {d.context}</p>
+        <h1 data-reveal style="--i:1">{d.title}</h1>
+        <p class="summary" data-reveal style="--i:2">{d.summary}</p>
+        {d.highlights && <ul class="highlights" data-reveal style="--i:3">{d.highlights.map((h) => <li>{h}</li>)}</ul>}
       </header>
-      <figure class="page-cover"><img src={d.cover} alt={d.coverAlt} /></figure>
+      <figure class="page-cover" data-reveal style={`--i:4; view-transition-name: cover-${project.id}`}><img src={d.cover} alt={d.coverAlt} /></figure>
       <div class="prose">
         {d.prototypes && (
           <>
@@ -32,10 +33,10 @@ const { Content } = await render(project);
       </div>
     </div>
   </article>
-  <nav class="related" aria-label="More work">
+  <nav class="related" aria-label="More projects">
     <div class="wrap">
-      <a href="/#work"><span>Back to</span><strong>All work</strong></a>
-      <a href={`/work/${next.id}`}><span>Next project</span><strong>{next.data.title}</strong></a>
+      <a href="/#work"><span>Back to</span><strong><span class="arrow" aria-hidden="true">←</span> <span class="u">Portfolio</span></strong></a>
+      <a href={`/work/${next.id}`}><span>Next project</span><strong><span class="u">{next.data.title}</span> <span class="arrow" aria-hidden="true">→</span></strong></a>
     </div>
   </nav>
 </Base>

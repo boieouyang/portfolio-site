@@ -20,6 +20,7 @@ const ogImage = new URL(image, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
@@ -39,8 +40,8 @@ const ogImage = new URL(image, Astro.site);
         <a class="name" href="/">{site.name}</a>
         <nav aria-label="Main">
           <ul>
-            <li><a href="/#work" aria-current={current === 'work' ? 'page' : undefined}>Work</a></li>
-            <li><a href="/writing" aria-current={current === 'writing' ? 'page' : undefined}>Writing</a></li>
+            <li><a href="/#work" aria-current={current === 'work' ? 'page' : undefined}>Portfolio</a></li>
+            <li><a href="/writing" aria-current={current === 'writing' ? 'page' : undefined}><span class="nav-long">Learning </span>Reflections</a></li>
             <li><a href="/#about" aria-current={current === 'about' ? 'page' : undefined}>About</a></li>
           </ul>
         </nav>
@@ -51,8 +52,8 @@ const ogImage = new URL(image, Astro.site);
     </main>
     <footer class="site-footer">
       <div class="wrap">
-        <p class="big">Let's talk about learning and AI.</p>
-        <div class="contact">
+        <p class="big" data-reveal>Let's talk about learning and AI.</p>
+        <div class="contact" data-reveal style="--i:1">
           <a href={`mailto:${site.email}`}>{site.email}</a>
           {site.linkedin && <a href={site.linkedin}>LinkedIn</a>}
           {site.instagram && <a href={site.instagram}>Instagram</a>}
@@ -61,5 +62,32 @@ const ogImage = new URL(image, Astro.site);
         <small>© {new Date().getFullYear()} {site.name}</small>
       </div>
     </footer>
+    <script is:inline>
+      (() => {
+        const vh = innerHeight;
+        // Long-form images and headings below the fold reveal as you read
+        document.querySelectorAll('.prose > :is(h2, figure, blockquote, p:has(img))').forEach((el) => {
+          if (el.getBoundingClientRect().top > vh) el.setAttribute('data-reveal', '');
+        });
+        const els = document.querySelectorAll('[data-reveal], .section');
+        const show = (el) => el.classList.add('is-in');
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+          els.forEach(show);
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+        }, { rootMargin: '0px 0px -8% 0px' });
+        els.forEach((el) => io.observe(el));
+        // Arriving through a page transition: show what is already on screen without a second animation
+        addEventListener('pagereveal', (e) => {
+          if (!e.viewTransition) return;
+          const root = document.documentElement;
+          root.classList.add('vt-arrive');
+          els.forEach((el) => { if (el.getBoundingClientRect().top < vh) { show(el); io.unobserve(el); } });
+          requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('vt-arrive')));
+        });
+      })();
+    </script>
   </body>
 </html>

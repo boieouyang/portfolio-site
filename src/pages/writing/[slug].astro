@@ -11,18 +11,19 @@ const { Content } = await render(r);
 const date = d.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 ---
 <Base title={d.title} description={d.summary} image={d.cover} current="writing">
+  <div class="progress" aria-hidden="true"></div>
   <article>
     <div class="wrap">
       <header class="page-head">
-        <p class="ctx">{d.course} · <time datetime={d.date.toISOString().slice(0, 10)}>{date}</time></p>
-        <h1>{d.title}</h1>
-        <p class="summary">{d.summary}</p>
+        <p class="ctx" data-reveal>{d.course} · <time datetime={d.date.toISOString().slice(0, 10)}>{date}</time></p>
+        <h1 data-reveal style="--i:1">{d.title}</h1>
+        <p class="summary" data-reveal style="--i:2">{d.summary}</p>
       </header>
-      <figure class="page-cover"><img src={d.cover} alt={d.coverAlt} /></figure>
+      <figure class="page-cover" data-reveal style={`--i:3; view-transition-name: thumb-${r.id}`}><img src={d.cover} alt={d.coverAlt} /></figure>
       <div class="prose"><Content /></div>
     </div>
   </article>
-  <nav class="related" aria-label="More writing">
-    <div class="wrap"><a href="/writing"><span>Back to</span><strong>All writing</strong></a><a href="/#work"><span>See</span><strong>Selected work</strong></a></div>
+  <nav class="related" aria-label="More reflections">
+    <div class="wrap"><a href="/writing"><span>Back to</span><strong><span class="arrow" aria-hidden="true">←</span> <span class="u">Learning Reflections</span></strong></a><a href="/#work"><span>See</span><strong><span class="u">Portfolio</span> <span class="arrow" aria-hidden="true">→</span></strong></a></div>
   </nav>
 </Base>

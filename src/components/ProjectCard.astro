@@ -1,20 +1,23 @@
 ---
-interface Props { project: any; feature?: boolean }
-const { project, feature = false } = Astro.props;
+interface Props { project: any; feature?: boolean; index?: number }
+const { project, feature = false, index = 0 } = Astro.props;
 const d = project.data;
 ---
-<a class:list={['project-card', { feature }]} href={`/work/${project.id}`}>
-  <div class="cover"><img src={d.cover} alt={d.coverAlt} loading={feature ? 'eager' : 'lazy'} /></div>
+<a class:list={['project-card', { feature }]} href={`/work/${project.id}`} data-reveal style={`--i:${index % 2}`}>
+  <div class="cover" style={`view-transition-name: cover-${project.id}`}>
+    <img src={d.cover} alt={d.coverAlt} loading={feature ? 'eager' : 'lazy'} />
+    <span class="cue" aria-hidden="true">View project <span class="arrow">→</span></span>
+  </div>
   {feature ? (
     <div class="text">
       <span class="ctx">{d.category} · {d.context}</span>
-      <h3>{d.title}</h3>
+      <h3><span class="u">{d.title}</span></h3>
       <p>{d.summary}</p>
     </div>
   ) : (
     <>
       <span class="ctx">{d.category} · {d.context}</span>
-      <h3>{d.title}</h3>
+      <h3><span class="u">{d.title}</span></h3>
       <p>{d.summary}</p>
     </>
   )}
