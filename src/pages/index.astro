@@ -53,11 +53,19 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'n
     </section>
 
     <section class="section" aria-labelledby="skills-h">
-      <div class="section-head" data-reveal><h2 id="skills-h">What I do</h2></div>
-      <div class="skills">
-        {site.skills.map((s, i) => <div data-reveal style={`--i:${i % 3}`}><h3>{s.name}</h3><p>{s.text}</p></div>)}
+      <div class="section-head" data-reveal>
+        <h2 id="skills-h">What I do</h2>
+        <p class="hint"><span class="hint-hover">Hover a skill to see the tools behind it</span><span class="hint-tap">Tap a skill to see the tools behind it</span></p>
       </div>
-      <ul class="tools" aria-label="Tools" data-reveal>{site.tools.map((t) => <li>{t}</li>)}</ul>
+      <div class="skills">
+        {site.skills.map((s, i) => (
+          <div class="skill" data-reveal data-tools={s.tools.join('|')} style={`--i:${i % 3}`}>
+            <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.name}</h3><p>{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <ul class="tools" aria-label="Tools" data-reveal>{site.tools.map((t, i) => <li data-tool={t} style={`--i:${i}`}>{t}</li>)}</ul>
     </section>
 
     <section class="section" aria-labelledby="writing-h">
@@ -73,3 +81,40 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'n
     </section>
   </div>
 </Base>
+
+<script>
+  // What I do: pointing at a skill lights up the tools behind it, and pointing at a tool lights up its skills
+  const skills = document.querySelector('.skills');
+  const tools = document.querySelector('.tools');
+  if (skills && tools) {
+    const items = [...skills.querySelectorAll<HTMLElement>('.skill')];
+    const chips = [...tools.querySelectorAll<HTMLElement>('li')];
+    const toolsOf = (item: HTMLElement) => (item.dataset.tools ? item.dataset.tools.split('|') : []);
+    const clear = () => {
+      skills.classList.remove('has-active');
+      tools.classList.remove('has-active');
+      items.forEach((i) => i.classList.remove('is-active'));
+      chips.forEach((c) => c.classList.remove('is-match'));
+    };
+    const activate = (active: HTMLElement[], matches: HTMLElement[]) => {
+      clear();
+      skills.classList.toggle('has-active', active.length > 0);
+      tools.classList.toggle('has-active', matches.length > 0);
+      active.forEach((i) => i.classList.add('is-active'));
+      matches.forEach((c) => c.classList.add('is-match'));
+    };
+    const fromSkill = (item: HTMLElement) => activate([item], chips.filter((c) => toolsOf(item).includes(c.dataset.tool!)));
+    const fromTool = (chip: HTMLElement) => activate(items.filter((i) => toolsOf(i).includes(chip.dataset.tool!)), [chip]);
+    const bind = (el: HTMLElement, on: () => void) => {
+      el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') on(); });
+      el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') clear(); });
+      // Touch and pen: tap to toggle
+      el.addEventListener('click', (e) => {
+        if ((e as PointerEvent).pointerType === 'mouse') return;
+        el.classList.contains('is-active') || el.classList.contains('is-match') ? clear() : on();
+      });
+    };
+    items.forEach((item) => bind(item, () => fromSkill(item)));
+    chips.forEach((chip) => bind(chip, () => fromTool(chip)));
+  }
+</script>

@@ -43,23 +43,28 @@
   "skills": [
     {
       "name": "Learning Experience Design",
-      "text": "Learning journeys grounded in learning science, from curriculum modules to training programs."
+      "text": "Learning journeys grounded in learning science, from curriculum modules to training programs.",
+      "tools": ["Articulate 360", "H5P"]
     },
     {
       "name": "AI Product Prototyping",
-      "text": "Turning ideas for AI-powered tools into testable prototypes with Figma Make, ChatGPT, Codex, and Claude."
+      "text": "Turning ideas for AI-powered tools into testable prototypes with Figma Make, ChatGPT, Codex, and Claude.",
+      "tools": ["Figma Make", "ChatGPT", "Claude", "n8n"]
     },
     {
       "name": "UI/UX Design",
-      "text": "Interactions and motion in Figma that make every action feel intuitive."
+      "text": "Interactions and motion in Figma that make every action feel intuitive.",
+      "tools": ["Figma", "Figma Make", "Framer"]
     },
     {
       "name": "User Research",
-      "text": "Surveys, interviews, and data turned into insights that shape design decisions."
+      "text": "Surveys, interviews, and data turned into insights that shape design decisions.",
+      "tools": ["SPSS"]
     },
     {
       "name": "Making & Fabrication",
-      "text": "Laser cutting, 3D printing, and hands-on prototyping that bring ideas into the physical world."
+      "text": "Laser cutting, 3D printing, and hands-on prototyping that bring ideas into the physical world.",
+      "tools": ["CorelDRAW", "Tinkercad"]
     }
   ],
   "tools": [
@@ -71,7 +76,9 @@
     "SPSS",
     "n8n",
     "ChatGPT",
-    "Claude"
+    "Claude",
+    "CorelDRAW",
+    "Tinkercad"
   ],
   "cities": [
     "Guangzhou",
