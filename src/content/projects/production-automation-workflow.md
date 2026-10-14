@@ -2,11 +2,15 @@
 title: "Production Automation & AI Transcripts"
 summary: "Designing n8n workflows that streamline educational media production, starting with AI-generated transcripts and a human review step."
 category: "AI Workflow"
-context: "Teaching and Learning Lab, HGSE · Sep 2026 – present"
+context: "Teaching and Learning Lab, HGSE"
 date: "2026"
-order: 5
+order: 6
 cover: "/images/JSYjEEzS2VYkOSoJ6lNmyzxf9w0.webp"
 coverAlt: "Video player beside a searchable transcript panel with the word 'feedback' highlighted"
+role: "Workflow designer"
+timeline: "Sep 2026 – present"
+team: "Solo"
+tools: ["n8n", "AI transcription"]
 ---
 
 ## The challenge

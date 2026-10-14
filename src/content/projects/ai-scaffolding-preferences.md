@@ -7,6 +7,10 @@ date: "2026"
 order: 1
 cover: "/images/kW54bp07bPbCe0Prqs3UDUxMg.webp"
 coverAlt: "Illustration of three chat bubbles in navy and cream above the words 'Learning scaffolding that fits'"
+role: "Sole researcher"
+timeline: "Oct 2025 – May 2026"
+team: "Solo"
+tools: ["Qualtrics", "SPSS"]
 highlights:
   - "99 students across 8 countries and territories"
   - "3 types of AI support × 4 academic tasks"

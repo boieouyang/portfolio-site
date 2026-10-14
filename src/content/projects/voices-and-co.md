@@ -4,13 +4,16 @@ summary: "Co-founding a student-led media community at Harvard that connects peo
 category: "Community"
 context: "Co-founder · HGSE"
 date: "2026"
-order: 4
+order: 5
 cover: "/images/rO5BT5E79DYsH5XsLRmd1tUEAbY.webp"
 coverAlt: "Voices & Co- logo: navy serif lettering with a speech bubble and an open hand, above the line 'HGSE / Harvard'"
+role: "Co-founder"
+timeline: "Sep 2026 – present"
+team: "5-person founding team"
+tools: ["ChatGPT"]
 highlights:
   - "2 podcast episodes in the first month"
   - "100+ listeners on campus"
-  - "5-person founding team"
 ---
 
 ## Why we started
@@ -20,6 +23,10 @@ HGSE brings together students from many countries, professions, and backgrounds,
 ## Designing the format
 
 We treated the community like a product and designed three formats, each inviting a different depth of engagement. Street interviews capture many quick, spontaneous voices; podcasts go deep with one guest at a time; and expert conversations bring in perspectives from beyond campus. Social events then turn listeners into participants, so the audience can become part of the next story.
+
+Our content runs as three series: Co-Wonder for big questions, Co-Explore for discovering stories, and Co-Think for ideas in dialogue.
+
+![The 'Our Series' graphic with three cards: Co-Wonder, 'Big questions, open minds'; Co-Explore, 'Discover stories, expand perspectives'; and Co-Think, 'Ideas in dialogue, thoughts in motion'](/images/voices-series.webp)
 
 ![Voices & Co- introduction poster describing the media studio, learning community, and social network, with a QR code to join](/images/yeFr4X11s787TeMZXUa0EcA.webp)
 
