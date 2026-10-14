@@ -25,6 +25,21 @@
       "years": "2026–2027"
     },
     {
+      "role": "Co-Founder, Voices & Co-",
+      "org": "HGSE student media and community",
+      "years": "2026–present"
+    },
+    {
+      "role": "Production Automation & AI Transcripts",
+      "org": "Teaching and Learning Lab, HGSE",
+      "years": "2026–present"
+    },
+    {
+      "role": "SEL Program Redesign",
+      "org": "Harvard EASEL Lab, Impact by Design",
+      "years": "2026–present"
+    },
+    {
       "role": "BA Education Studies, First-Class Honours",
       "org": "UCL",
       "years": "2023–2026"
@@ -38,13 +53,18 @@
       "role": "Program Development Intern",
       "org": "Aerosim",
       "years": "2024"
+    },
+    {
+      "role": "Research Assistant, Aviation Education Research",
+      "org": "Prof. Stéphane Redonnet, APAC",
+      "years": "2024"
     }
   ],
   "skills": [
     {
       "name": "Learning Experience Design",
       "text": "Learning journeys grounded in learning science, from curriculum modules to training programs.",
-      "tools": ["Articulate 360", "H5P"]
+      "tools": ["Articulate 360", "H5P", "Canva", "CapCut"]
     },
     {
       "name": "AI Product Prototyping",
@@ -59,7 +79,7 @@
     {
       "name": "User Research",
       "text": "Surveys, interviews, and data turned into insights that shape design decisions.",
-      "tools": ["SPSS"]
+      "tools": ["Qualtrics", "SPSS"]
     },
     {
       "name": "Making & Fabrication",
@@ -73,12 +93,15 @@
     "Framer",
     "Articulate 360",
     "H5P",
+    "Qualtrics",
     "SPSS",
     "n8n",
     "ChatGPT",
     "Claude",
     "CorelDRAW",
-    "Tinkercad"
+    "Tinkercad",
+    "Canva",
+    "CapCut"
   ],
   "cities": [
     "Guangzhou",

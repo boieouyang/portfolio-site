@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
@@ -9,6 +9,7 @@ export async function getStaticPaths() {
 const { project, next } = Astro.props;
 const d = project.data;
 const { Content } = await render(project);
+const reflection = d.reflection ? await getEntry('reflections', d.reflection) : undefined;
 ---
 <Base title={d.title} description={d.summary} image={d.cover} current="work">
   <div class="progress" aria-hidden="true"></div>
@@ -18,9 +19,17 @@ const { Content } = await render(project);
         <p class="ctx" data-reveal>{d.category} · {d.context}</p>
         <h1 data-reveal style="--i:1">{d.title}</h1>
         <p class="summary" data-reveal style="--i:2">{d.summary}</p>
-        {d.highlights && <ul class="highlights" data-reveal style="--i:3">{d.highlights.map((h) => <li>{h}</li>)}</ul>}
+        {(d.role || d.timeline || d.team || d.tools) && (
+          <dl class="meta" data-reveal style="--i:3">
+            {d.role && <div><dt>Role</dt><dd>{d.role}</dd></div>}
+            {d.timeline && <div><dt>Timeline</dt><dd>{d.timeline}</dd></div>}
+            {d.team && <div><dt>Team</dt><dd>{d.team}</dd></div>}
+            {d.tools && <div><dt>Tools</dt><dd>{d.tools.join(', ')}</dd></div>}
+          </dl>
+        )}
+        {d.highlights && <ul class="highlights" data-reveal style="--i:4">{d.highlights.map((h) => <li>{h}</li>)}</ul>}
       </header>
-      <figure class="page-cover" data-reveal style={`--i:4; view-transition-name: cover-${project.id}`}><img src={d.cover} alt={d.coverAlt} /></figure>
+      <figure class="page-cover" data-reveal style={`--i:5; view-transition-name: cover-${project.id}`}><img src={d.cover} alt={d.coverAlt} /></figure>
       <div class="prose">
         {d.prototypes && (
           <>
@@ -29,7 +38,7 @@ const { Content } = await render(project);
           </>
         )}
         <Content />
-        {d.reflection && <p><a href={`/writing/${d.reflection}`}>Read the full Omni-Creature reflection</a></p>}
+        {reflection && <p><a href={`/writing/${reflection.id}`}>Read the full reflection: {reflection.data.title}</a></p>}
       </div>
     </div>
   </article>

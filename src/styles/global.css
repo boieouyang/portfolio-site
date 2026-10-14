@@ -160,10 +160,14 @@ p { text-wrap: pretty; }
 .page-head .summary { font-size: var(--step-1); line-height: 1.5; max-width: 56ch; margin: 0; color: var(--slate); }
 .page-cover { margin: 0 0 clamp(32px, 5vw, 56px); border-radius: 14px; overflow: hidden; background: var(--sand); }
 .page-cover img { width: 100%; max-height: 640px; object-fit: contain; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px clamp(16px, 3vw, 32px); max-width: 880px; margin: 28px 0 0; padding-top: 16px; border-top: 1px solid var(--rule); }
+.meta dt { color: var(--slate); font-size: var(--step--1); margin-bottom: 2px; }
+.meta dd { margin: 0; }
 .highlights { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 24px 0 0; padding: 0; }
 .highlights li { background: var(--sand); border-radius: 8px; padding: 10px 14px; font-size: var(--step--1); }
 .prose { max-width: var(--measure); margin-inline: auto; padding-bottom: 56px; }
 .prose h2 { font-family: var(--font-serif); font-weight: 500; font-size: var(--step-3); line-height: 1.15; margin: 2.2em 0 0.6em; }
+.prose h3 { font-family: var(--font-serif); font-weight: 500; font-size: var(--step-2); line-height: 1.2; margin: 1.8em 0 0.7em; }
 .prose p, .prose li { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); line-height: 1.65; }
 .prose p { margin: 0 0 1.1em; }
 .prose ul { padding-left: 1.2em; margin: 0 0 1.2em; }
@@ -173,7 +177,7 @@ p { text-wrap: pretty; }
 .prose figcaption, .prose img + em { display: block; font-size: var(--step--1); color: var(--slate); margin-top: 10px; }
 .prose blockquote { margin: 1.6em 0; padding: 0; font-family: var(--font-serif); font-style: italic; font-size: var(--step-2); line-height: 1.4; }
 .prose blockquote p { font-size: inherit; }
-.prototypes { list-style: none; padding: 0; margin: 0 0 1.4em; display: flex; flex-wrap: wrap; gap: 10px; }
+.prototypes, .prose .prototypes { list-style: none; padding: 0; margin: 0 0 1.4em; display: flex; flex-wrap: wrap; gap: 10px; }
 .prototypes a { display: inline-block; border: 1px solid var(--navy); border-radius: 999px; padding: 10px 18px; text-decoration: none; font-size: var(--step-0); transition: background-color .35s, color .35s; }
 .prototypes a:hover { background: var(--navy); color: var(--paper); }
 .related { border-top: 1px solid var(--rule); padding-block: 40px 64px; }
