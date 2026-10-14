@@ -1,0 +1,81 @@
+{
+  "name": "Baoyi Ouyang",
+  "role": "Learning Designer · AI Builder",
+  "title": "Baoyi Ouyang · Learning Designer",
+  "description": "Baoyi Ouyang is a learning designer who researches how people learn with AI and builds the tools to support it. M.Ed. candidate in Learning Design, Innovation & Technology at Harvard GSE.",
+  "url": "https://baoyiouyang.vercel.app",
+  "email": "boieouyang6@gmail.com",
+  "linkedin": "",
+  "instagram": "",
+  "resume": "",
+  "heroImage": "/images/o8VXFc61QwhJg7gp7I5iOVnCNYI.webp",
+  "heroAlt": "Portrait of Baoyi Ouyang in a white shirt and navy vest against a blue backdrop",
+  "aboutImage": "/images/TNAz2yUp1zmcuDiWvnxkluYprQ.webp",
+  "aboutAlt": "Baoyi Ouyang holding a bouquet in front of stone columns",
+  "intro": "I research how people learn with AI, and build the tools to support it.",
+  "about": [
+    "I'm a learning designer pursuing an M.Ed. in Learning Design, Innovation & Technology at Harvard GSE, after earning a First-Class BA in Education Studies at UCL.",
+    "I've studied how learners respond to different forms of generative-AI scaffolding, redesigned training programs around flight simulators, and prototyped interactive learning experiences in Figma.",
+    "Having grown up in China, studied in the UK, and now living in the US, I bring a cross-cultural lens to how people learn. Outside class, I co-founded Voices & Co- and make vlogs, because good learning, like good stories, starts with people."
+  ],
+  "experience": [
+    {
+      "role": "M.Ed. Candidate, Learning Design, Innovation & Technology",
+      "org": "Harvard GSE",
+      "years": "2026–2027"
+    },
+    {
+      "role": "BA Education Studies, First-Class Honours",
+      "org": "UCL",
+      "years": "2023–2026"
+    },
+    {
+      "role": "Operations & Research Intern",
+      "org": "Yisum",
+      "years": "2025"
+    },
+    {
+      "role": "Program Development Intern",
+      "org": "Aerosim",
+      "years": "2024"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Learning Experience Design",
+      "text": "Learning journeys grounded in learning science, from curriculum modules to training programs."
+    },
+    {
+      "name": "AI Product Prototyping",
+      "text": "Turning ideas for AI-powered tools into testable prototypes with Figma Make, ChatGPT, Codex, and Claude."
+    },
+    {
+      "name": "UI/UX Design",
+      "text": "Interactions and motion in Figma that make every action feel intuitive."
+    },
+    {
+      "name": "User Research",
+      "text": "Surveys, interviews, and data turned into insights that shape design decisions."
+    },
+    {
+      "name": "Making & Fabrication",
+      "text": "Laser cutting, 3D printing, and hands-on prototyping that bring ideas into the physical world."
+    }
+  ],
+  "tools": [
+    "Figma",
+    "Figma Make",
+    "Framer",
+    "Articulate 360",
+    "H5P",
+    "SPSS",
+    "n8n",
+    "ChatGPT",
+    "Claude"
+  ],
+  "cities": [
+    "Guangzhou",
+    "London",
+    "Boston"
+  ]
+}

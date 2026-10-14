@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
+const reflections = (await getCollection('reflections', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const [first, ...rest] = projects;
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+<Base navyHeader>
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1>Baoyi<br />Ouyang</h1>
+        <p class="lede">{site.intro}</p>
+        <ul class="cities" aria-label="Places I've lived and learned">
+          {site.cities.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+      <figure class="hero-photo"><img src={site.heroImage} alt={site.heroAlt} fetchpriority="high" /></figure>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="section-head"><h2 id="work-h">Selected work</h2></div>
+      <div class="work-grid">
+        <ProjectCard project={first} feature />
+        {rest.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="section-head"><h2 id="about-h">About</h2></div>
+      <div class="about-grid">
+        <figure><img src={site.aboutImage} alt={site.aboutAlt} loading="lazy" /></figure>
+        <div class="about-text">
+          {site.about.map((p) => <p>{p}</p>)}
+          <ul class="record">
+            {site.experience.map((e) => (
+              <li><span>{e.role}</span><span class="org">{e.org}</span><span class="years">{e.years}</span></li>
+            ))}
+          </ul>
+          <div class="actions">
+            <a class="btn solid" href={`mailto:${site.email}`}>Email me</a>
+            {site.resume && <a class="btn" href={site.resume}>Download résumé</a>}
+            {site.linkedin && <a class="btn" href={site.linkedin}>LinkedIn</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="skills-h">
+      <div class="section-head"><h2 id="skills-h">What I do</h2></div>
+      <div class="skills">
+        {site.skills.map((s) => <div><h3>{s.name}</h3><p>{s.text}</p></div>)}
+      </div>
+      <ul class="tools" aria-label="Tools">{site.tools.map((t) => <li>{t}</li>)}</ul>
+    </section>
+
+    <section class="section" aria-labelledby="writing-h">
+      <div class="section-head"><h2 id="writing-h">Writing</h2><a href="/writing">All reflections</a></div>
+      <ul class="writing-list">
+        {reflections.slice(0, 3).map((r) => (
+          <li><a href={`/writing/${r.id}`}>
+            <div class="thumb"><img src={r.data.cover} alt="" loading="lazy" /></div>
+            <div><p class="meta">{r.data.course} · {fmt(r.data.date)}</p><h3>{r.data.title}</h3><p>{r.data.summary}</p></div>
+          </a></li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Base>

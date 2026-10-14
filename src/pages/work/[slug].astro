@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((p, i) => ({ params: { slug: p.id }, props: { project: p, next: projects[(i + 1) % projects.length] } }));
+}
+const { project, next } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+---
+<Base title={d.title} description={d.summary} image={d.cover} current="work">
+  <article>
+    <div class="wrap">
+      <header class="page-head">
+        <p class="ctx">{d.category} · {d.context}</p>
+        <h1>{d.title}</h1>
+        <p class="summary">{d.summary}</p>
+        {d.highlights && <ul class="highlights">{d.highlights.map((h) => <li>{h}</li>)}</ul>}
+      </header>
+      <figure class="page-cover"><img src={d.cover} alt={d.coverAlt} /></figure>
+      <div class="prose">
+        {d.prototypes && (
+          <>
+            <h2 style="margin-top:0">Try the prototypes</h2>
+            <ul class="prototypes">{d.prototypes.map((p) => <li><a href={p.url} target="_blank" rel="noopener">{p.label}</a></li>)}</ul>
+          </>
+        )}
+        <Content />
+        {d.reflection && <p><a href={`/writing/${d.reflection}`}>Read the full Omni-Creature reflection</a></p>}
+      </div>
+    </div>
+  </article>
+  <nav class="related" aria-label="More work">
+    <div class="wrap">
+      <a href="/#work"><span>Back to</span><strong>All work</strong></a>
+      <a href={`/work/${next.id}`}><span>Next project</span><strong>{next.data.title}</strong></a>
+    </div>
+  </nav>
+</Base>
