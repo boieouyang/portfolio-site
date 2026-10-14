@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://baoyiouyang.vercel.app',
+  site: 'https://baoyi-ouyang.vercel.app',
   trailingSlash: 'ignore',
 });
