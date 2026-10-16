@@ -9,8 +9,9 @@ cover: "/images/JSYjEEzS2VYkOSoJ6lNmyzxf9w0.webp"
 coverAlt: "Video player beside a searchable transcript panel with the word 'feedback' highlighted"
 role: "Workflow designer"
 timeline: "Sep 2026 – present"
-team: "Solo"
+team: "Individual work, with a partner in shared advisor meetings"
 tools: ["n8n", "AI transcription"]
+reflection: "from-confusion-to-scaffolding"
 ---
 
 ## The challenge
