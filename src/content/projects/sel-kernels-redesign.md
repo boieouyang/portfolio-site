@@ -9,8 +9,11 @@ cover: "/images/sel-cover.webp"
 coverAlt: "Concept interface asking 'What's happening with your students right now?' with 'A conflict' selected, leading to a three-step 'Feelings check-in' activity card, above the words 'SEL that fits the moment'"
 role: "UX researcher and designer"
 timeline: "Sep 2026 – present"
-team: "Individual proposals, synthesized as a team"
-tools: ["Interview guides", "Stakeholder mapping", "How Might We framing"]
+team: "Individual proposals, then a team prototype"
+tools: ["Interview guides", "Stakeholder mapping", "How Might We framing", "Lovable"]
+prototypes:
+  - label: "Open the Kernels Hub prototype"
+    url: "https://kernels-kindness-garden.lovable.app/"
 ---
 
 ## The challenge
@@ -51,7 +54,22 @@ My proposal starts from the moment instead of the catalog. An educator says who 
 
 ![Side-by-side concept: today, an alphabetical grid of large cards with endless scrolling; the concept, four steps from choosing an age group and a current student need to a few compact matched activities and a three-step guide with a printable template](/images/sel-concept-flow.webp)
 
-Each of us developed an individual proposal before we synthesized them as a team. Next, I want to prototype the entry flow and test it with educators to see whether starting from a situation really makes choosing faster.
+Each of us developed an individual proposal before we synthesized them as a team.
+
+## From concept to prototype
+
+We turned the synthesis into **Kernels Hub**, a working prototype for afterschool educators. It opens the way my proposal did, with the moment instead of the catalog: "Tell us what's happening today," and in about a minute the educator gets a short, ready-to-use Kernel they can lead in 5 to 15 minutes. It's free and needs no sign-up.
+
+![Kernels Hub home page: 'Make social-emotional learning part of every day', a 'Plan today' button, and four stages of support: Plan, Lead, Reflect, and Grow](/images/sel-kernels-hub.webp)
+
+The prototype supports an educator across the whole day, not just the moment of choosing:
+
+- **Plan, before.** Find an activity for today, personalize it with AI or rehearse it, and map out the week on a calendar.
+- **Lead, during.** Step-by-step comics and short demos, screen slides and printable cards, and a quick student check-in before and after.
+- **Reflect, after.** Mark each activity as used, adapted, or not used, and share what worked with other educators.
+- **Grow, over time.** A 5-minute training with a certificate, a staff card game, and a wellbeing check-in for the educators themselves.
+
+Next, we're collecting feedback through the prototype to see whether starting from a situation really makes choosing faster.
 
 ## What I'm learning
 

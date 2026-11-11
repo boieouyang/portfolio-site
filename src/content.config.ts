@@ -19,6 +19,7 @@ const projects = defineCollection({
     tools: z.array(z.string()).optional(),
     highlights: z.array(z.string()).optional(),
     prototypes: z.array(z.object({ label: z.string(), url: z.string() })).optional(),
+    linksTitle: z.string().optional(),
     reflection: z.string().optional(),
     draft: z.boolean().optional(),
   }),

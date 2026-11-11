@@ -33,7 +33,7 @@ const reflection = d.reflection ? await getEntry('reflections', d.reflection) : 
       <div class="prose">
         {d.prototypes && (
           <>
-            <h2 style="margin-top:0">Try the prototypes</h2>
+            <h2 style="margin-top:0">{d.linksTitle ?? (d.prototypes.length === 1 ? 'Try the prototype' : 'Try the prototypes')}</h2>
             <ul class="prototypes">{d.prototypes.map((p) => <li><a href={p.url} target="_blank" rel="noopener">{p.label}</a></li>)}</ul>
           </>
         )}
