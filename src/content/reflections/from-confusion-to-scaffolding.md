@@ -23,6 +23,8 @@ That bridge turned out to be the project charter. Writing it forced us to say cl
 
 Once the scope was on paper, my confusion turned into a to-do list. I now see the charter as a scaffold in Collins' (2006) sense. It did not tell us the answers, but it structured the problem enough that we could work on it independently. My background in media production also became more useful once the scope was narrower, because a consistent visual style across course media is exactly the kind of problem I already understand from editing. The AI tools are new, but the design goal is familiar.
 
+[Read our project charter (PDF)](/files/paw-project-charter.pdf). It sets out the scope, timeline, roles, success criteria, and risks, revised as the project went on.
+
 ## Who is the design for?
 
 This week's readings also pushed me to ask a question our technical discussions had mostly skipped: who are the users of this workflow? There are at least two groups. Faculty and course teams will use the workflow to produce media, and learners will experience what it produces. Human-centered design asks us to start from the needs of those people, not from what the tools can do (IDEO.org, n.d.; Thomsen, 2013). Our plan to show faculty three style options before training a LoRA is one small way of keeping the people who will use the output in the decision, rather than letting the model's defaults become the aesthetic.
