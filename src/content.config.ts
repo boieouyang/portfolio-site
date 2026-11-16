@@ -20,6 +20,8 @@ const projects = defineCollection({
     highlights: z.array(z.string()).optional(),
     prototypes: z.array(z.object({ label: z.string(), url: z.string() })).optional(),
     linksTitle: z.string().optional(),
+    skills: z.array(z.string()).optional(),
+    facts: z.array(z.string()).optional(),
     reflection: z.string().optional(),
     draft: z.boolean().optional(),
   }),

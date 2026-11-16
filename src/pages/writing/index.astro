@@ -4,19 +4,22 @@ import { getCollection } from 'astro:content';
 const reflections = (await getCollection('reflections', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 ---
-<Base title="Learning Reflections" description="Reflections on learning design, simulation, and making." current="writing">
-  <div class="wrap">
-    <header class="page-head">
-      <h1 data-reveal>Learning Reflections</h1>
-      <p class="summary" data-reveal style="--i:1">Reflections from my courses at Harvard GSE, on how people learn and how we design for it.</p>
-    </header>
-    <ul class="writing-list" style="margin-bottom:64px">
-      {reflections.map((r, i) => (
-        <li data-reveal style={`--i:${i + 2}`}><a href={`/writing/${r.id}`}>
-          <div class="thumb" style={`view-transition-name: thumb-${r.id}`}><img src={r.data.cover} alt="" loading="lazy" /></div>
-          <div><p class="meta">{r.data.course} · {fmt(r.data.date)}</p><h3><span class="u">{r.data.title}</span></h3><p>{r.data.summary}</p></div>
-        </a></li>
-      ))}
-    </ul>
+<Base title="Learning Reflections" description="Reflections on learning design, simulation, and making." label="Reflections">
+  <div class="page">
+    <div class="wrap">
+      <header class="page-head">
+        <span class="mono">Writing</span>
+        <h1>Learning Reflections</h1>
+        <p class="summary">Reflections from my courses at Harvard GSE, on how people learn and how we design for it.</p>
+      </header>
+      <ul class="writing-list">
+        {reflections.map((r) => (
+          <li><a href={`/writing/${r.id}`}>
+            <div class="thumb"><img src={r.data.cover} alt="" loading="lazy" /></div>
+            <div><span class="mono">{r.data.course} · {fmt(r.data.date)}</span><h3>{r.data.title}</h3><p>{r.data.summary}</p></div>
+          </a></li>
+        ))}
+      </ul>
+    </div>
   </div>
 </Base>

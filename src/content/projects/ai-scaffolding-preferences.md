@@ -15,6 +15,10 @@ highlights:
   - "99 students across 8 countries and territories"
   - "3 types of AI support × 4 academic tasks"
   - "Analyzed in SPSS with the BFI-10 personality measure"
+skills: ["research"]
+facts:
+  - "99 students surveyed"
+  - "8 countries and territories"
 ---
 
 ## The question

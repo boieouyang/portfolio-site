@@ -6,13 +6,15 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
-  navyHeader?: boolean;
-  current?: 'work' | 'writing' | 'about';
+  home?: boolean;
+  label?: string;
 }
-const { title, description = site.description, image = site.heroImage, navyHeader = false, current } = Astro.props;
+const { title, description = site.description, image = site.heroImage, home = false, label = 'Portfolio' } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+const SKILLS = Object.fromEntries(site.skills.map((s) => [s.key, { name: s.name, text: s.text, tools: s.tools }]));
+const STOPS = Object.fromEntries(site.journey.map((j) => [j.key, { label: j.label, items: j.items }]));
 ---
 <!doctype html>
 <html lang="en">
@@ -20,7 +22,6 @@ const ogImage = new URL(image, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
@@ -31,63 +32,62 @@ const ogImage = new URL(image, Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class:list={['site-header', { 'on-navy': navyHeader }]}>
-      <div class="wrap">
-        <a class="name" href="/">{site.name}</a>
-        <nav aria-label="Main">
-          <ul>
-            <li><a href="/#work" aria-current={current === 'work' ? 'page' : undefined}>Portfolio</a></li>
-            <li><a href="/writing" aria-current={current === 'writing' ? 'page' : undefined}><span class="nav-long">Learning </span>Reflections</a></li>
-            <li><a href="/#about" aria-current={current === 'about' ? 'page' : undefined}>About</a></li>
-          </ul>
-        </nav>
+    {home && (
+      <div id="splash" aria-hidden="true">
+        <div class="sp-in"><span class="sp-b">B</span><svg viewBox="0 0 36 36"><circle class="tr" cx="18" cy="18" r="15.9155" pathLength="100" /><circle class="pg" cx="18" cy="18" r="15.9155" pathLength="100" /></svg></div>
+        <span class="sp-n mono"><b id="spn">0</b> / 100</span>
+        <span class="sp-t mono">{site.name} · Portfolio {new Date().getFullYear()}</span>
       </div>
+    )}
+    <canvas id="petals" aria-hidden="true"></canvas>
+    <div class="cur" aria-hidden="true"></div>
+
+    <header class="top">
+      <a class="me pill" href="/">{site.name}</a>
+      {site.resume && <a class="cv pill" href={site.resume} target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>}
     </header>
+    <div class="ruler" aria-hidden="true" data-label={label}><div class="ticks"></div><div class="mark"></div><span class="where mono" id="where">{label}</span></div>
+
+    <nav class="dock pill" aria-label="Main">
+      <a class="seal" href="/" aria-label="Home">B</a>
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a class="opt" href="/writing">Reflections</a>
+      <a class="go" href="#hello">Say hello</a>
+    </nav>
+    <div class="toast pill" role="status" aria-live="polite" id="toast"></div>
+
     <main id="main">
       <slot />
     </main>
-    <footer class="site-footer">
+
+    <footer class="end" id="hello" aria-labelledby="end-h">
       <div class="wrap">
-        <p class="big" data-reveal>Let's talk about learning and AI.</p>
-        <div class="contact" data-reveal style="--i:1">
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          {site.linkedin && <a href={site.linkedin}>LinkedIn</a>}
-          {site.instagram && <a href={site.instagram}>Instagram</a>}
-          {site.resume && <a href={site.resume}>Résumé (PDF)</a>}
+        <button class="hi" id="hi" aria-label="Greeting. Click to see it in my next language." lang="en">Nice to meet you.</button>
+        <div class="langs" role="group" aria-label="My three languages">
+          <button class="lang" data-l="0" aria-pressed="true">English</button>
+          <button class="lang" data-l="1" aria-pressed="false" lang="zh-Hans">普通话</button>
+          <button class="lang" data-l="2" aria-pressed="false" lang="zh-Hant">廣東話</button>
+        </div>
+        <span class="mono">Contact</span>
+        <h2 id="end-h">Let's talk about<br /><span class="cap">l</span>earning and AI.</h2>
+        <span class="addr" id="addr">{site.email}</span>
+        <div class="acts">
+          <button class="btn" id="copy">Copy email</button>
+          {site.resume && <a class="btn alt" href={site.resume} target="_blank" rel="noopener">Open résumé</a>}
+          {site.linkedin && <a class="btn alt" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+          {site.instagram && <a class="btn alt" href={site.instagram} target="_blank" rel="noopener">Instagram</a>}
         </div>
         <small>© {new Date().getFullYear()} {site.name}</small>
       </div>
     </footer>
-    <script is:inline>
-      (() => {
-        const vh = innerHeight;
-        // Long-form images and headings below the fold reveal as you read
-        document.querySelectorAll('.prose > :is(h2, figure, blockquote, p:has(img))').forEach((el) => {
-          if (el.getBoundingClientRect().top > vh) el.setAttribute('data-reveal', '');
-        });
-        const els = document.querySelectorAll('[data-reveal], .section');
-        const show = (el) => el.classList.add('is-in');
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-          els.forEach(show);
-          return;
-        }
-        const io = new IntersectionObserver((entries) => {
-          for (const e of entries) if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
-        }, { rootMargin: '0px 0px -8% 0px' });
-        els.forEach((el) => io.observe(el));
-        // Arriving through a page transition: show what is already on screen without a second animation
-        addEventListener('pagereveal', (e) => {
-          if (!e.viewTransition) return;
-          const root = document.documentElement;
-          root.classList.add('vt-arrive');
-          els.forEach((el) => { if (el.getBoundingClientRect().top < vh) { show(el); io.unobserve(el); } });
-          requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('vt-arrive')));
-        });
-      })();
-    </script>
+
+    <script is:inline define:vars={{ SKILLS, STOPS }}>window.__SITE = { SKILLS, STOPS };</script>
+    {home && <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>}
+    <script is:inline src="/site.js"></script>
   </body>
 </html>

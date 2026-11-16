@@ -16,6 +16,10 @@ highlights:
   - "3 concept rounds before building"
   - "Final expo in December"
 reflection: "omni-creature"
+skills: ["make", "lxd"]
+facts:
+  - "3D-printed dream toy"
+  - "Final expo in December"
 ---
 
 ## The brief

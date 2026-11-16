@@ -16,6 +16,10 @@ highlights:
   - "2 metadata versions compared side by side"
   - "LoRA trained on 180 line drawings"
 reflection: "many-small-judgments"
+skills: ["ai", "lxd"]
+facts:
+  - "Capstone project"
+  - "Gallery Walk on Dec 3"
 ---
 
 ## The capstone in one sentence

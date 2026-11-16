@@ -6,115 +6,107 @@ import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
 const reflections = (await getCollection('reflections', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const [first, ...rest] = projects;
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const years = projects.map((p) => Number(p.data.date)).filter(Boolean);
+const span = years.length ? (Math.min(...years) === Math.max(...years) ? `${years[0]}` : `${Math.min(...years)}–${Math.max(...years)}`) : '';
+const [first, ...restName] = site.name.split(' ');
+const last = restName.join(' ');
+const repeat = <T,>(xs: T[], n: number) => Array.from({ length: n }, () => xs).flat();
 ---
-<Base navyHeader>
-  <section class="hero" aria-label="Introduction">
-    <div class="wrap">
-      <div class="hero-text">
-        <h1 aria-label="Baoyi Ouyang"><span class="line"><span>Baoyi</span></span><span class="line"><span>Ouyang</span></span></h1>
-        <p class="lede">{site.intro}</p>
-        <ul class="cities" aria-label="Places I've lived and learned">
-          {site.cities.map((c, i) => <li style={`--i:${i}`}>{c}</li>)}
-        </ul>
-      </div>
-      <figure class="hero-photo"><img src={site.heroImage} alt={site.heroAlt} fetchpriority="high" /></figure>
-    </div>
+<Base home label="Welcome">
+  <section class="intro" id="intro" aria-label="Welcome">
+    <div class="obs" aria-hidden="true"><span class="ob" style="--l:17%;--tp:26%;--sz:26vmin;--z:1.25;--sx:-30;--bl:0px;--bt:8s;--bd:0s"><span class="ball3 mintc"></span></span><span class="ob" style="--l:84%;--tp:70%;--sz:30vmin;--z:1.5;--sx:36;--bl:1.5px;--bt:9s;--bd:-2s"><span class="ball3 pinkc"></span></span><span class="ob" style="--l:70%;--tp:17%;--sz:9vmin;--z:0.5;--sx:14;--bl:1.5px;--bt:6s;--bd:-1s"><span class="ball3 butc"></span></span><span class="ob box" style="--l:80%;--tp:27%;--sz:13vmin;--z:0.9;--sx:26;--bl:0px;--bt:24s;--bd:0s"><span class="cube3 butc"><b></b><b></b><b></b><b></b><b></b><b></b></span></span><span class="ob box" style="--l:28%;--tp:78%;--sz:9vmin;--z:0.7;--sx:-16;--bl:0.5px;--bt:30s;--bd:-8s"><span class="cube3 mintc"><b></b><b></b><b></b><b></b><b></b><b></b></span></span><span class="ob" style="--l:12%;--tp:68%;--sz:22vmin;--z:1.0;--sx:-34;--bl:0px;--bt:8s;--bd:-3s"><span class="ring3 pinkc"></span></span><span class="ob" style="--l:62%;--tp:84%;--sz:13vmin;--z:0.6;--sx:10;--bl:1px;--bt:7s;--bd:-4s"><span class="ring3 mintc"></span></span><span class="ob" style="--l:40%;--tp:13%;--sz:13vmin;--z:0.55;--sx:-8;--bl:1.2px;--bt:7s;--bd:-2s"><span class="pill3 pinkc"></span></span><span class="ob" style="--l:93%;--tp:44%;--sz:16vmin;--z:1.2;--sx:40;--bl:0px;--bt:8s;--bd:-5s"><span class="pill3 butc"></span></span><span class="ob" style="--l:5%;--tp:44%;--sz:5vmin;--z:0.35;--sx:-10;--bl:2px;--bt:6s;--bd:-3s"><span class="ball3 pinkc"></span></span></div>
+    <p class="intro-copy" style="margin:0"><span class="hello">Hello,</span><span class="iam">I'm {first}.</span></p>
+    <button class="cue pill" id="cue"><span class="ball" aria-hidden="true"></span><span class="mono" style="color:var(--ink)">Scroll to begin</span></button>
   </section>
 
-  <div class="wrap">
-    <section class="section" id="work" aria-labelledby="work-h">
-      <div class="section-head" data-reveal><h2 id="work-h">Portfolio</h2></div>
-      <div class="work-grid">
-        <ProjectCard project={first} feature />
-        {rest.map((p, i) => <ProjectCard project={p} index={i} />)}
-      </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-h">
-      <div class="section-head" data-reveal><h2 id="about-h">About</h2></div>
-      <div class="about-grid">
-        <figure data-reveal><img src={site.aboutImage} alt={site.aboutAlt} loading="lazy" /></figure>
-        <div class="about-text">
-          {site.about.map((p, i) => <p data-reveal style={`--i:${i + 1}`}>{p}</p>)}
-          <ul class="record">
-            {site.experience.map((e, i) => (
-              <li data-reveal style={`--i:${i}`}><span>{e.role}</span><span class="org">{e.org}</span><span class="years">{e.years}</span></li>
-            ))}
-          </ul>
-          <div class="actions" data-reveal>
-            <a class="btn solid" href={`mailto:${site.email}`}>Email me</a>
-            {site.resume && <a class="btn" href={site.resume}>Download résumé</a>}
-            {site.linkedin && <a class="btn" href={site.linkedin}>LinkedIn</a>}
+  <section class="hero" id="hero" aria-label="Introduction">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="mono">{site.role}</span>
+        <h1 aria-label={site.name}><span class="w" aria-hidden="true"><span class="cap">{first[0]}</span>{first.slice(1)}</span><span class="w" aria-hidden="true"><span class="cap">{last[0]}</span>{last.slice(1)}</span></h1>
+        <p class="lede">{site.intro}</p>
+        <div class="ask pill">
+          <p>What are you looking for? <em>Someone who can…</em></p>
+          <div class="chips" role="group" aria-label="Pick a skill to see the projects that show it">
+            {site.skills.map((s) => <button class="chip h" data-k={s.key} aria-pressed="false">{s.verb}</button>)}
           </div>
         </div>
       </div>
-    </section>
+      <figure class="arch"><img src={site.heroImage} alt={site.heroAlt} fetchpriority="high" /></figure>
+    </div>
+  </section>
 
-    <section class="section" aria-labelledby="skills-h">
-      <div class="section-head" data-reveal>
-        <h2 id="skills-h">What I do</h2>
-        <p class="hint"><span class="hint-hover">Hover a skill to see the tools behind it</span><span class="hint-tap">Tap a skill to see the tools behind it</span></p>
+  <section aria-labelledby="now-h" id="now">
+    <div class="wrap">
+      <aside class="now wide pill">
+        <div class="now-head"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="mono" id="now-h">{site.now.label}</span></div>
+        <ul>
+          {site.now.items.map((n) => <li><a href={n.href}><span class="mono">{n.tag}</span><strong>{n.title}</strong><span>{n.note}</span></a></li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <div class="band" id="band" aria-label="My tools and skills. Pick one to see the projects made with it.">
+    <div class="row">{repeat(site.tools, 3).map((t) => <><span class="bt" data-tool={t}>{t}</span><i>✦</i></>)}</div>
+    <div class="row">{repeat(site.skills, 4).map((s) => <><span class="bt" data-k={s.key}>{s.name}</span><i>✦</i></>)}</div>
+    <p class="mono band-hint">Scroll or drag here to see more tools · pick one to see what I made with it</p>
+  </div>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="head"><div><span class="mono" id="count">{projects.length} projects · {span}</span><h2 id="work-h"><span class="cap">P</span>ortfolio</h2></div></div>
+      <div class="filter">
+        <div class="chips" role="group" aria-label="Show projects by skill">
+          {site.skills.map((s) => <button class="chip w" data-k={s.key} aria-pressed="false">{s.verb}</button>)}
+        </div>
+        <div class="proof pill" id="proof" hidden>
+          <h3 id="proofName"></h3><p id="proofText"></p><ul id="proofTools" aria-label="Tools I use for this"></ul>
+          <button class="reset" id="reset">Show all {projects.length} projects</button>
+        </div>
       </div>
-      <div class="skills">
-        {site.skills.map((s, i) => (
-          <div class="skill" data-reveal data-tools={s.tools.join('|')} style={`--i:${i % 3}`}>
-            <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{s.name}</h3><p>{s.text}</p>
+      <div class="work" id="grid">
+        {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="head"><div><span class="mono">Hello</span><h2 id="about-h"><span class="cap">A</span>bout</h2></div></div>
+      <div class="about">
+        <figure class="portrait"><img src={site.aboutImage} alt={site.aboutAlt} loading="lazy" /></figure>
+        <div class="about-text">
+          {site.about.map((p) => <p>{p}</p>)}
+          <div class="journey">
+            <span class="mono">My path · pick a city</span>
+            <div class="tabs" role="tablist" aria-label="Places I've lived and learned" style="margin-top:10px">
+              {site.journey.map((j, i) => (
+                <>
+                  {i > 0 && <span class="to" aria-hidden="true"></span>}
+                  <button class="tab" role="tab" data-c={j.key} aria-selected={i === site.journey.length - 1 ? 'true' : 'false'}>{j.city}</button>
+                </>
+              ))}
+            </div>
+            <div class="stop pill" id="stop" role="tabpanel">
+              <span class="mono">{site.journey.at(-1)!.label}</span>
+              <ul>{site.journey.at(-1)!.items.map((i) => <li><span>{i[0]}</span><span class="yr">{i[2]}</span><span class="org">{i[1]}</span></li>)}</ul>
+            </div>
           </div>
-        ))}
+        </div>
       </div>
-      <ul class="tools" aria-label="Tools" data-reveal>{site.tools.map((t, i) => <li data-tool={t} style={`--i:${i}`}>{t}</li>)}</ul>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" aria-labelledby="writing-h">
-      <div class="section-head" data-reveal><h2 id="writing-h">Learning Reflections</h2><a href="/writing">All reflections</a></div>
-      <ul class="writing-list">
-        {reflections.slice(0, 3).map((r, i) => (
-          <li data-reveal style={`--i:${i}`}><a href={`/writing/${r.id}`}>
-            <div class="thumb" style={`view-transition-name: thumb-${r.id}`}><img src={r.data.cover} alt="" loading="lazy" /></div>
-            <div><p class="meta">{r.data.course} · {fmt(r.data.date)}</p><h3><span class="u">{r.data.title}</span></h3><p>{r.data.summary}</p></div>
-          </a></li>
+  <section id="reflections" aria-labelledby="ref-h">
+    <div class="wrap">
+      <div class="head"><div><span class="mono">Writing</span><h2 id="ref-h"><span class="cap">L</span>earning Reflections</h2></div><a href="/writing">All reflections →</a></div>
+      <ul class="posts">
+        {reflections.slice(0, 3).map((r) => (
+          <li><a href={`/writing/${r.id}`}><h3>{r.data.title}</h3><span class="mono">{fmt(r.data.date)}</span><p>{r.data.summary}</p></a></li>
         ))}
       </ul>
-    </section>
-  </div>
+    </div>
+  </section>
 </Base>
-
-<script>
-  // What I do: pointing at a skill lights up the tools behind it, and pointing at a tool lights up its skills
-  const skills = document.querySelector('.skills');
-  const tools = document.querySelector('.tools');
-  if (skills && tools) {
-    const items = [...skills.querySelectorAll<HTMLElement>('.skill')];
-    const chips = [...tools.querySelectorAll<HTMLElement>('li')];
-    const toolsOf = (item: HTMLElement) => (item.dataset.tools ? item.dataset.tools.split('|') : []);
-    const clear = () => {
-      skills.classList.remove('has-active');
-      tools.classList.remove('has-active');
-      items.forEach((i) => i.classList.remove('is-active'));
-      chips.forEach((c) => c.classList.remove('is-match'));
-    };
-    const activate = (active: HTMLElement[], matches: HTMLElement[]) => {
-      clear();
-      skills.classList.toggle('has-active', active.length > 0);
-      tools.classList.toggle('has-active', matches.length > 0);
-      active.forEach((i) => i.classList.add('is-active'));
-      matches.forEach((c) => c.classList.add('is-match'));
-    };
-    const fromSkill = (item: HTMLElement) => activate([item], chips.filter((c) => toolsOf(item).includes(c.dataset.tool!)));
-    const fromTool = (chip: HTMLElement) => activate(items.filter((i) => toolsOf(i).includes(chip.dataset.tool!)), [chip]);
-    const bind = (el: HTMLElement, on: () => void) => {
-      el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') on(); });
-      el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') clear(); });
-      // Touch and pen: tap to toggle
-      el.addEventListener('click', (e) => {
-        if ((e as PointerEvent).pointerType === 'mouse') return;
-        el.classList.contains('is-active') || el.classList.contains('is-match') ? clear() : on();
-      });
-    };
-    items.forEach((item) => bind(item, () => fromSkill(item)));
-    chips.forEach((chip) => bind(chip, () => fromTool(chip)));
-  }
-</script>

@@ -14,6 +14,10 @@ tools: ["Interview guides", "Stakeholder mapping", "How Might We framing", "Lova
 prototypes:
   - label: "Open the Kernels Hub prototype"
     url: "https://kernels-kindness-garden.lovable.app/"
+skills: ["research", "ux", "ai", "lxd"]
+facts:
+  - "Educator interviews"
+  - "Team prototype built in Lovable"
 ---
 
 ## The challenge

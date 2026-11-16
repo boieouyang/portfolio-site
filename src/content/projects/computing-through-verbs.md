@@ -11,6 +11,10 @@ role: "Interaction designer"
 timeline: "Sep 2026 – present"
 team: "Solo"
 tools: ["Figma", "Figma Make"]
+skills: ["ux", "ai"]
+facts:
+  - "6 verbs prototyped"
+  - "Figma and Figma Make"
 ---
 
 ## The brief

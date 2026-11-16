@@ -1,8 +1,8 @@
 ---
-title: "Bridge"
+title: "Bridge: AI+ Learning Differences Hackathon"
 summary: "Helping students find the words when speaking is hard: an AI-supported communication tool for college office hours, co-designed with Perkins School for the Blind in two days."
 category: "Inclusive AI Design"
-context: "AI+ Learning Differences Hackathon · Harvard GSE"
+context: "Harvard GSE"
 date: "2026"
 order: 1.5
 cover: "/images/bridge-team.webp"
@@ -18,6 +18,10 @@ highlights:
 prototypes:
   - label: "Open the Bridge prototype"
     url: "https://bridge-beyond-the-label.lovable.app/"
+skills: ["research", "ux", "ai"]
+facts:
+  - "Learning Design Excellence award"
+  - "Working prototype in 2 days"
 ---
 
 ## Overview

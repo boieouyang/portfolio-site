@@ -1,0 +1,61 @@
+---
+// The composed cover for a project card: real pieces of the work, set at an angle on a pastel stage.
+// A project without a custom composition falls back to its cover image as a polaroid.
+interface Props { project: any; index?: number }
+const { project, index = 0 } = Astro.props;
+const d = project.data;
+const tones = ['mint', 'pink', 'butter'];
+const custom: Record<string, string> = {
+  'ai-scaffolding-preferences': 'mint', bridge: 'pink', 'sel-kernels-redesign': 'butter', 'computing-through-verbs': 'pink',
+  'digital-fabrication': 'mint', 'voices-and-co': 'butter', 'production-automation-workflow': 'pink', 'the-rules-we-didnt-make': 'mint',
+};
+const id = project.id;
+const tone = custom[id] ?? tones[index % 3];
+const pos = (x: number, y: number, w: number, r: number) => `--x:${x}%;--y:${y}%;--w:${w}%;--r:${r}deg`;
+---
+<div class={`shot ${tone}`}>
+  {id === 'ai-scaffolding-preferences' ? (
+    <div class="bubs" role="img" aria-label="Three chat bubbles naming the kinds of AI support studied: conceptual, procedural, and metacognitive">
+      <span class="bub" style="--r:-3deg">Conceptual support</span>
+      <span class="bub dark" style="--r:2deg">Procedural support</span>
+      <span class="bub line" style="--r:-2deg">Metacognitive support</span>
+    </div>
+  ) : id === 'bridge' ? (
+    <>
+      <img class="pc polaroid" src="/images/bridge-team.webp" alt="Team 15 holding their certificates at the AI+ Learning Differences Hackathon" loading="lazy" style={pos(17, 9, 62, -3)} />
+      <span class="badge" aria-hidden="true">Learning<br />Design<br />Excellence</span>
+    </>
+  ) : id === 'sel-kernels-redesign' ? (
+    <div class="pc win" style={pos(19, 8, 62, 2)}>
+      <span class="bar" aria-hidden="true"><i></i><i></i><i></i></span>
+      <img src="/images/sel-kernels-hub.webp" alt="Kernels Hub prototype home page: Make social-emotional learning part of every day" loading="lazy" />
+    </div>
+  ) : id === 'computing-through-verbs' ? (
+    <>
+      <img class="pc" src="/images/cover-starve-1.webp" alt="Four studies of the word STARVE, from draining letters to a wall of bright repeated type" loading="lazy" style={pos(5, 30, 30, -8)} />
+      <img class="pc" src="/images/cover-starve-2.webp" alt="" loading="lazy" style={pos(25, 22, 30, -3)} />
+      <img class="pc" src="/images/cover-starve-3.webp" alt="" loading="lazy" style={pos(45, 28, 30, 4)} />
+      <img class="pc" src="/images/cover-starve-4.webp" alt="" loading="lazy" style={pos(65, 20, 30, 9)} />
+    </>
+  ) : id === 'digital-fabrication' ? (
+    <img class="pc polaroid" src="/images/fab-dream-toy-final.webp" alt="A yellow 3D-printed dragon car with red-and-orange wings" loading="lazy" style={pos(17, 10, 66, 3)} />
+  ) : id === 'voices-and-co' ? (
+    <>
+      <span class="word" aria-hidden="true">Voices<br />&amp; Co-</span>
+      <img class="pc phone" src="/images/voices-co-wonder-01.webp" alt="A still from a Voices & Co- street interview asking who was the happiest when you got into Harvard" loading="lazy" style={pos(60, 7, 29, 5)} />
+    </>
+  ) : id === 'production-automation-workflow' ? (
+    <>
+      <img class="pc" src="/images/tll03-classroom.webp" alt="Two line-art storyboard frames: a teacher at a chalkboard, and students at a school meal" loading="lazy" style={pos(6, 10, 56, -4)} />
+      <img class="pc" src="/images/tll03-meals-and-play.webp" alt="" loading="lazy" style={pos(38, 40, 56, 3)} />
+    </>
+  ) : id === 'the-rules-we-didnt-make' ? (
+    <>
+      <img class="pc" src="/images/cover-rules-1.webp" alt="Two pages of the comic The Rules We Didn't Make: the cover and the character introductions" loading="lazy" style={pos(9, 10, 40, -5)} />
+      <img class="pc" src="/images/cover-rules-2.webp" alt="" loading="lazy" style={pos(51, 12, 40, 4)} />
+    </>
+  ) : (
+    <img class="pc polaroid solo" src={d.cover} alt={d.coverAlt} loading="lazy" style="--r:3deg" />
+  )}
+  {d.facts && <ul class="facts">{d.facts.map((f: string) => <li>{f}</li>)}</ul>}
+</div>

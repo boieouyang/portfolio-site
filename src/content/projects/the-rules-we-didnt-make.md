@@ -15,6 +15,10 @@ highlights:
   - "First-class grade"
   - "5 chapters, 24 panels"
   - "Written for readers aged 9–13"
+skills: ["lxd"]
+facts:
+  - "Hand-illustrated in Procreate"
+  - "For ages 9 to 13"
 ---
 
 ## The story

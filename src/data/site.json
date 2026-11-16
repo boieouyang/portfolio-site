@@ -62,29 +62,59 @@
   ],
   "skills": [
     {
-      "name": "Learning Experience Design",
-      "text": "Learning journeys grounded in learning science, from curriculum modules to training programs.",
-      "tools": ["Articulate 360", "H5P", "Canva", "CapCut"]
-    },
-    {
-      "name": "AI Product Prototyping",
-      "text": "Turning ideas for AI-powered tools into testable prototypes with Figma Make, ChatGPT, Codex, and Claude.",
-      "tools": ["Figma Make", "ChatGPT", "Claude", "n8n"]
+      "name": "User Research",
+      "text": "Surveys, interviews, and data turned into insights that shape design decisions.",
+      "tools": [
+        "Qualtrics",
+        "SPSS"
+      ],
+      "key": "research",
+      "verb": "Research users"
     },
     {
       "name": "UI/UX Design",
       "text": "Interactions and motion in Figma that make every action feel intuitive.",
-      "tools": ["Figma", "Figma Make", "Framer"]
+      "tools": [
+        "Figma",
+        "Figma Make",
+        "Framer"
+      ],
+      "key": "ux",
+      "verb": "Design interfaces"
     },
     {
-      "name": "User Research",
-      "text": "Surveys, interviews, and data turned into insights that shape design decisions.",
-      "tools": ["Qualtrics", "SPSS"]
+      "name": "AI Product Prototyping",
+      "text": "Turning ideas for AI-powered tools into testable prototypes with Figma Make, ChatGPT, Codex, and Claude.",
+      "tools": [
+        "Figma Make",
+        "ChatGPT",
+        "Claude",
+        "n8n"
+      ],
+      "key": "ai",
+      "verb": "Prototype with AI"
+    },
+    {
+      "name": "Learning Experience Design",
+      "text": "Learning journeys grounded in learning science, from curriculum modules to training programs.",
+      "tools": [
+        "Articulate 360",
+        "H5P",
+        "Canva",
+        "CapCut"
+      ],
+      "key": "lxd",
+      "verb": "Design learning"
     },
     {
       "name": "Making & Fabrication",
       "text": "Laser cutting, 3D printing, and hands-on prototyping that bring ideas into the physical world.",
-      "tools": ["CorelDRAW", "Tinkercad"]
+      "tools": [
+        "CorelDRAW",
+        "Tinkercad"
+      ],
+      "key": "make",
+      "verb": "Make things"
     }
   ],
   "tools": [
@@ -101,11 +131,110 @@
     "CorelDRAW",
     "Tinkercad",
     "Canva",
-    "CapCut"
+    "CapCut",
+    "Lovable",
+    "ComfyUI",
+    "Procreate"
   ],
   "cities": [
     "Guangzhou",
     "London",
     "Boston"
+  ],
+  "now": {
+    "label": "Right now · November 2026",
+    "items": [
+      {
+        "tag": "Building",
+        "title": "My capstone animatic",
+        "note": "For the Gallery Walk on December 3",
+        "href": "/work/production-automation-workflow"
+      },
+      {
+        "tag": "Making",
+        "title": "A final learning design",
+        "note": "For the fabrication expo in December",
+        "href": "/work/digital-fabrication"
+      },
+      {
+        "tag": "Just won",
+        "title": "Learning Design Excellence",
+        "note": "AI+ Learning Differences Hackathon, November 7–8",
+        "href": "/work/bridge"
+      }
+    ]
+  },
+  "journey": [
+    {
+      "key": "gz",
+      "city": "Guangzhou",
+      "label": "Guangzhou and Hong Kong · where I grew up and first worked",
+      "items": [
+        [
+          "Operations & Research Intern",
+          "Yisum, Guangzhou · competitive analysis of 60 psychology-training products",
+          "2025"
+        ],
+        [
+          "Program Development Intern",
+          "Aerosim, Hong Kong · redesigned 8 training programs around flight simulators",
+          "2024"
+        ],
+        [
+          "Research Assistant, Aviation Education Research",
+          "Prof. Stéphane Redonnet, APAC",
+          "2024"
+        ]
+      ]
+    },
+    {
+      "key": "ldn",
+      "city": "London",
+      "label": "London · where I learned to research",
+      "items": [
+        [
+          "BA Education Studies, First-Class Honours",
+          "UCL",
+          "2023–2026"
+        ],
+        [
+          "Dissertation: Personality and AI Scaffolding",
+          "Surveyed 99 university students across 8 countries and territories",
+          "2025–2026"
+        ],
+        [
+          "The Rules We Didn't Make",
+          "A hand-illustrated comic for 9- to 13-year-olds",
+          "2025"
+        ]
+      ]
+    },
+    {
+      "key": "bos",
+      "city": "Boston",
+      "label": "Boston · where I design and build",
+      "items": [
+        [
+          "M.Ed. Candidate, Learning Design, Innovation & Technology",
+          "Harvard GSE",
+          "2026–2027"
+        ],
+        [
+          "Learning Design Excellence award",
+          "AI+ Learning Differences Hackathon, with Perkins School for the Blind",
+          "Nov 2026"
+        ],
+        [
+          "Co-Founder, Voices & Co-",
+          "HGSE student media and community",
+          "2026–present"
+        ],
+        [
+          "Capstone and SEL Program Redesign",
+          "Teaching and Learning Lab · Harvard EASEL Lab",
+          "2026–present"
+        ]
+      ]
+    }
   ]
 }

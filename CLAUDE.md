@@ -8,12 +8,20 @@ Personal portfolio for job applications (learning design / AI). Built with Astro
 - `src/content/reflections/*.md` — one file per reflection/article. Frontmatter: title, summary, course, date (YYYY-MM-DD), cover, coverAlt, optional draft.
 - `public/images/` — all images, as .webp, max 2000px on the long side.
 - `src/styles/global.css` — all styling. Colors and type scale are tokens at the top.
+- `public/site.js` — all interactions (opening curtain, 3D favorite things, skill and tool filters, tools band, city path, greeting, scroll effects). Each block checks that its elements exist.
+- `src/components/Cover.astro` — the composed cover on each homepage project card. A new project without a custom composition shows its `cover` image as a polaroid automatically.
+
+## Homepage data
+- Project frontmatter `skills`: which "Someone who can…" choices show this project. Keys: research, ux, ai, lxd, make.
+- Project frontmatter `facts`: two short results shown on the card when hovered. `tools` also drives the tools band filter.
+- `site.json` `now`: the "Right now" panel (update the label month and items as things change).
+- `site.json` `journey`: the three-city path in About. `skills[].verb` is the wording on the choice buttons.
 
 ## House rules
 - Write in US English, first person, plain and specific. Lead with outcomes and numbers.
 - Every image needs a real alt text that describes what is in it.
 - Keep project covers 4:3-friendly (important content centered); they are cropped to 4:3 on the homepage.
-- Don't add new fonts or colors; use the tokens in global.css.
+- Don't add new fonts or colors; use the tokens in global.css (mint, pink, butter, ink, leaf, rose).
 - Before committing, run `npm run build` and fix any errors.
 
 ## Common tasks

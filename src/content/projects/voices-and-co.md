@@ -25,6 +25,10 @@ prototypes:
     url: "https://youtube.com/shorts/B4XZYO3ecMI"
   - label: "@voices_co.hgse on Instagram"
     url: "https://www.instagram.com/voices_co.hgse/"
+skills: []
+facts:
+  - "2 episodes released"
+  - "100+ listeners on campus"
 ---
 
 ## Why we started
