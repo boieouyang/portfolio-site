@@ -36,6 +36,8 @@ Our team received the **Learning Design Excellence** award at the AI+ Learning D
 
 **We heard** co-designers describe a *feeling*, not a diagnosis: knowing what you need, but being unable to say it when you're overwhelmed. They also pointed out that many people who struggle this way are undiagnosed or choose not to disclose.
 
+![Agenda folder for the Pre-Hackathon Immersion Visit at Perkins School for the Blind, titled 'From Innovation to Systems Change', with a Braille alphabet card held in front of it](/images/bridge-perkins-visit.webp)
+
 **So we changed** our user and our scope.
 
 > How might we help students who find it hard to speak when overwhelmed during office hours ask for what they need, without having to disclose a diagnosis?
